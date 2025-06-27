@@ -29,13 +29,14 @@ CritDmg: {self.crit_dmg}
 
         if rand_num_gen <= self.crit_rate:
             damage = -((self.base_atk + (self.base_atk * self.crit_dmg)) - ceil(enemy_armor * 0.2))
-            print(f"Critical hit! {self.name} did {damage} damage!")
+            print(f"Critical hit! {self.name} put all their strength on this attack and did {damage} damage!")
             return damage
         
         elif miss_rng <= miss_chance:
-            print(f"{self.name} missed!")
+            print(f"{self.name} swung his sword and missed!")
             return 0
         
         else:
             damage = -(self.base_atk - ceil(enemy_armor * 0.25))
+            print(f"{self.name} slashed their sword on the enemy and dealt {damage} damage!")
             return damage
