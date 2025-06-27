@@ -3,8 +3,14 @@ import random
 from character import Character
 
 class Mage(Character):
-    def __init__(self):
+    def __init__(self, name = "Sucrose"):
         super().__init__()
+        self.name = name
+        self.base_atk = 19
+        self.base_hp = 90
+        self.current_hp = self.base_hp
+        self.base_mana = 75
+        self.current_mana = self.base_mana
 
     def __str__(self):
         return f"""

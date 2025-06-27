@@ -6,6 +6,10 @@ class Warrior(Character):
     def __init__(self, name = "Bob"):
         super().__init__()
         self.name = name
+        self.base_hp = 120
+        self.current_hp = self.base_hp
+        self.base_mana = 50
+        self.current_mana = self.base_mana
 
     
     def __str__(self):
