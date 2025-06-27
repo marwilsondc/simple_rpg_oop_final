@@ -7,7 +7,9 @@ class Character:
         self.level = 0
         self.base_atk = 17
         self.base_hp = 100 
+        self.current_hp = self.base_hp
         self.base_mana = 60
+        self.current_mana = self.base_mana
         self.armor = 0
         self.experience = 0
         self.overall_exp = 0
@@ -26,12 +28,12 @@ class Character:
     
     #def health()
     def health(self, change):
-        self.base_hp += change
+        self.current_hp += change
 
         if change < 0: 
-            print(f"Took {change} damage! {self.name} Health: {self.base_hp}")
+            print(f"Took {change} damage! {self.name} Health: {self.current_hp}")
         else: 
-            print(f"Got healed {self.base_hp} points! {self.name} Health: {self.base_hp}")
+            print(f"Got healed {change} points! {self.name} Health: {self.current_hp}")
 
 
     #def mana()
@@ -55,6 +57,8 @@ class Character:
             self.base_atk = 17 + (self.level * 3)
             self.base_hp = 100 + (self.level * 15)
             self.base_mana = 60 + (self.level * 5)
+            self.current_hp = self.base_hp
+            self.current_mana = self.base_mana
 
             print(f"{self.name} leveled up to LVL {self.level}!")
         
