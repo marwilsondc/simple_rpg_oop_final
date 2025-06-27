@@ -51,3 +51,7 @@ class Character:
         
         else:
             print(f"{self.name} gained {change} EXP!")
+
+    #def equip_armor()
+    def equip_armor(self, amount):
+        self.armor = amount
