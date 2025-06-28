@@ -54,5 +54,7 @@ class Archer(Character):
             "Experience": 0,
             "Overall Exp": 0,
         }
+        self.current_hp = self.stats["HP"]
+        self.current_mana = self.stats["Mana"]
 
     
