@@ -72,3 +72,10 @@ class Character:
     #def equip_armor()
     def equip_armor(self, amount):
         self.armor = amount
+
+    def apply_level(self):
+        self.base_atk = 17 + (self.level * 3)
+        self.base_hp = 100 + (self.level * 15)
+        self.base_mana = 60 + (self.level * 5)
+        self.current_hp = self.base_hp
+        self.current_mana = self.base_mana
