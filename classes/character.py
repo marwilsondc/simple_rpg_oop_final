@@ -75,9 +75,9 @@ class Character:
     def equip_armor(self, amount):
         self.stats["Armor"] = amount
 
+    #This method is for enemies
     def apply_level(self):
-        self.stats["Attack"] = 17 + (self.stats["Level"] * 3)
-        self.stats["HP"] = 100 + (self.stats["Level"] * 15)
-        self.stats["Mana"] = 60 + (self.stats["Level"] * 5)
+        self.stats["Attack"] = self.stats["Attack"] + (self.stats["Level"] * 2)
+        self.stats["HP"] = self.stats["HP"] + (self.stats["Level"] * 7)
         self.current_hp = self.stats["HP"]
         self.current_mana = self.stats["Mana"]

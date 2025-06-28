@@ -68,4 +68,39 @@ while True:
         Enemy("Leviathan", level = user_hero.stats["Level"] + random.randint(0,2), atk = 19, hp = 130),
     ]
 
-    print(f"")
+    room_level = 0
+
+    print(f"""
+Health: {user_hero.current_hp}/{user_hero.stats["HP"]}
+Mana: {user_hero.current_mana}/{user_hero.stats["Mana"]}
+
+Select from the options below!:
+1. Move to next room
+2. View Hero stats
+3. Use heal ability
+4. Quit
+""")
+    
+    while True: 
+        try:
+            user_select = int("Select from the options above: ")
+            break
+
+        except TypeError:
+            print("Error: Invalid input")
+            continue
+
+    if user_select == 1:
+        pass
+
+    elif user_select == 2:
+        pass
+
+    elif user_select == 3:
+        pass
+
+    elif user_select == 4:
+        break
+
+    else:
+        continue
