@@ -183,6 +183,12 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                 damage = actual_mon.attack(user_hero.stats["Armor"])
                 user_hero.health(damage)
 
+                if user_hero.current_hp <= 0:
+                    print(f"Game Over! {user_hero} was slain by {actual_mon}!")
+                    print(f"{user_hero} was taken back to the past, and heard \"Continue your journey\"")
+                    user_hero.reset_stats()
+                    break
+
             room_level += 1
             heal_cooldown -= 1
 
@@ -274,6 +280,12 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                 damage = actual_mon.attack(user_hero.stats["Armor"])
                 user_hero.health(damage)
 
+                if user_hero.current_hp <= 0:
+                    print(f"Game Over! {user_hero} was slain by {actual_mon}!")
+                    print(f"{user_hero} was taken back to the past, and heard \"Continue your journey\"")
+                    user_hero.reset_stats()
+                    break
+
             room_level += 1
             heal_cooldown -= 1
 
@@ -364,6 +376,12 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                 print(f"{actual_mon} attacked {user_hero}")
                 damage = actual_mon.attack(user_hero.stats["Armor"])
                 user_hero.health(damage)
+
+                if user_hero.current_hp <= 0:
+                    print(f"Game Over! {user_hero} was slain by {actual_mon}!")
+                    print(f"{user_hero} was taken back to the past, and heard \"Continue your journey\"")
+                    user_hero.reset_stats()
+                    break
 
             room_level = 0
             heal_cooldown -= 1

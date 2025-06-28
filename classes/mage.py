@@ -37,3 +37,16 @@ class Mage(Character):
             damage = -(self.stats["Attack"] - ceil(enemy_armor * 0.21))
             print(f"{self.name} cast their fireball toward the enemy and dealt {damage} damage!")
             return damage
+        
+    def reset_stats(self):
+        self.stats = {
+            "Level": 1,
+            "Attack": 19,
+            "HP": 90,
+            "Mana": 75,
+            "Armor": 0,
+            "Crit Rate": 15,
+            "Crit Dmg": 0.5,
+            "Experience": 0,
+            "Overall Exp": 0,
+        }

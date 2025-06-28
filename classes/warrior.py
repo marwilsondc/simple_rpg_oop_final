@@ -38,4 +38,15 @@ class Warrior(Character):
             print(f"{self.name} slashed their sword on the enemy and dealt {damage} damage!")
             return damage
         
-    
+    def reset_stats(self):
+        self.stats = {
+            "Level": 1,
+            "Attack": 17,
+            "HP": 120,
+            "Mana": 50,
+            "Armor": 10,
+            "Crit Rate": 15,
+            "Crit Dmg": 0.5,
+            "Experience": 0,
+            "Overall Exp": 0,
+        }

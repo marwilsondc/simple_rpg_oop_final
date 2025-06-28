@@ -32,12 +32,14 @@ class Character:
     def health(self, change):
 
         if change < 0: 
-            print(f"Took {change} damage! {self.name} Health: {self.current_hp}")
             self.current_hp += change
+            print(f"Took {change} damage! {self.name} Health: {self.current_hp}")
+            
 
         elif change > 0: 
-            print(f"Got healed {change} points! {self.name} Health: {self.current_hp}")
             self.current_hp += change
+            print(f"Got healed {change} points! {self.name} Health: {self.current_hp}")
+            
         else:
             print("The action failed!")
 
@@ -61,9 +63,9 @@ class Character:
         if self.stats["Experience"] >= 50:
             self.stats["Experience"] = self.stats["Experience"] - 50
             self.stats["Level"] += 1
-            self.stats["Attack"] = self.stats["Attack"] + (self.stats["Level"] * 3)
-            self.stats["HP"] = self.stats["HP"] + (self.stats["Level"] * 15)
-            self.stats["Mana"] = self.stats["Mana"] + (self.stats["Level"] * 5)
+            self.stats["Attack"] = self.stats["Attack"] + ((self.stats["Level"] - 1) * 3)
+            self.stats["HP"] = self.stats["HP"] + ((self.stats["Level"] - 1) * 15)
+            self.stats["Mana"] = self.stats["Mana"] + ((self.stats["Level"] - 1) * 5)
             self.current_hp = self.stats["HP"]
             self.current_mana = self.stats["Mana"]
 
@@ -82,3 +84,7 @@ class Character:
         self.stats["HP"] = self.stats["HP"] + (self.stats["Level"] * 7)
         self.current_hp = self.stats["HP"]
         self.current_mana = self.stats["Mana"]
+
+    @abstractmethod
+    def reset_stats(self):
+        pass

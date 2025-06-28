@@ -42,6 +42,17 @@ class Archer(Character):
             print(f"{self.name} shot their bow and dealt {damage} damage!")
             return damage
         
-    
+    def reset_stats(self):
+        self.stats = {
+            "Level": 1,
+            "Attack": 24,
+            "HP": 70,
+            "Mana": 65,
+            "Armor": 0,
+            "Crit Rate": 15,
+            "Crit Dmg": 0.5,
+            "Experience": 0,
+            "Overall Exp": 0,
+        }
 
     
