@@ -4,17 +4,19 @@ class Character:
     #def __init__
     def __init__(self, name):
         self.name = name
-        self.level = 0
-        self.base_atk = 17
-        self.base_hp = 100 
-        self.current_hp = self.base_hp
-        self.base_mana = 60
-        self.current_mana = self.base_mana
-        self.armor = 0
-        self.experience = 0
-        self.overall_exp = 0
-        self.crit_rate = 15
-        self.crit_dmg = 0.5
+        self.stats = {
+            "Level": 1,
+            "Attack": 17,
+            "HP": 100,
+            "Mana": 60,
+            "Armor": 0,
+            "Crit Rate": 15,
+            "Crit Dmg": 0.5,
+            "Experience": 0,
+            "Overall Exp.": 0,
+        }
+        self.current_hp = self.stats["HP"]
+        self.current_mana = self.stats["Mana"]
 
     #def __str__
     @abstractmethod
@@ -42,40 +44,40 @@ class Character:
     def mana(self, change):
         
         if change < 0: 
-            print(f"Spent {change} mana! {self.name} mana: {self.base_mana}")
+            print(f"Spent {change} mana! {self.name} mana: {self.stats["Mana"]}")
             self.current_mana += change
         elif change > 0:
-            print(f"Granted {change} mana! {self.name} mana: {self.base_mana}")
+            print(f"Granted {change} mana! {self.name} mana: {self.stats["Mana"]}")
             self.current_mana += change
         else:
             print(f"The action failed!")
 
     #def exp_up()
     def exp_up(self, change):
-        self.experience += change
-        self.overall_exp += change
+        self.stats["Experience"] += change
+        self.stats["Overall Exp"] += change
 
         if self.experience >= 50:
             self.experience = self.experience - 50
-            self.level += 1
-            self.base_atk = 17 + (self.level * 3)
-            self.base_hp = 100 + (self.level * 15)
-            self.base_mana = 60 + (self.level * 5)
-            self.current_hp = self.base_hp
-            self.current_mana = self.base_mana
+            self.stats["Level"] += 1
+            self.stats["Attack"] = 17 + (self.stats["Level"] * 3)
+            self.stats["HP"] = 100 + (self.stats["Level"] * 15)
+            self.stats["Mana"] = 60 + (self.stats["Level"] * 5)
+            self.current_hp = self.stats["HP"]
+            self.current_mana = self.stats["Mana"]
 
-            print(f"{self.name} leveled up to LVL {self.level}!")
+            print(f"{self.name} leveled up to LVL {self.stats["Level"]}!")
         
         else:
             print(f"{self.name} gained {change} EXP!")
 
     #def equip_armor()
     def equip_armor(self, amount):
-        self.armor = amount
+        self.stats["Armor"] = amount
 
     def apply_level(self):
-        self.base_atk = 17 + (self.level * 3)
-        self.base_hp = 100 + (self.level * 15)
-        self.base_mana = 60 + (self.level * 5)
-        self.current_hp = self.base_hp
-        self.current_mana = self.base_mana
+        self.stats["Attack"] = 17 + (self.stats["Level"] * 3)
+        self.stats["HP"] = 100 + (self.stats["Level"] * 15)
+        self.stats["Mana"] = 60 + (self.stats["Level"] * 5)
+        self.current_hp = self.stats["HP"]
+        self.current_mana = self.stats["Mana"]
