@@ -4,8 +4,7 @@ from character import Character
 
 class Warrior(Character):
     def __init__(self, name = "Bob"):
-        super().__init__()
-        self.name = name
+        super().__init__(name)
         self.base_hp = 120
         self.current_hp = self.base_hp
         self.base_mana = 50

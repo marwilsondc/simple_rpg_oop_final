@@ -4,8 +4,7 @@ from character import Character
 
 class Mage(Character):
     def __init__(self, name = "Sucrose"):
-        super().__init__()
-        self.name = name
+        super().__init__(name)
         self.base_atk = 19
         self.base_hp = 90
         self.current_hp = self.base_hp

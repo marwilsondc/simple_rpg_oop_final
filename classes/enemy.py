@@ -5,8 +5,7 @@ import random
 class Enemy(Character):
     #def __init__(self):
     def __init__(self, name = None, level = 1, atk = 10, hp = 45, mana = 35, armor = 0, crit_rt = 15, crit_dmg = 0.5):
-        super().__init__()
-        self.name = name 
+        super().__init__(name)
         self.level = level
         self.base_atk = atk
         self.base_hp = hp
