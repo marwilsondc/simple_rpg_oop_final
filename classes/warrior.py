@@ -1,7 +1,7 @@
 from math import ceil
 import random 
-from character import Character
-from abilities import Abilities
+from .character import Character
+from .abilities import Abilities
 
 class Warrior(Character):
     def __init__(self, name = "Bob"):
@@ -19,7 +19,7 @@ class Warrior(Character):
     def __str__(self):
         return self.name
     
-    def attack(self, enemy_armor):
+    def attack(self, enemy_armor: int):
         rand_num_gen = random.randint(1, 100)
         miss_rng = random.randint(1,100)
         miss_chance = 5

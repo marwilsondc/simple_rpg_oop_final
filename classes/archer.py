@@ -1,7 +1,7 @@
 from math import ceil
 import random
-from character import Character
-from abilities import Abilities
+from .character import Character
+from .abilities import Abilities
 
 class Archer(Character):
     #def __init__()
@@ -23,7 +23,7 @@ class Archer(Character):
         return self.name
     
     #def attack()
-    def attack(self, enemy_armor):
+    def attack(self, enemy_armor: int):
         rand_num_gen = random.randint(1, 100)
         miss_rng = random.randint(1,100)
         miss_chance = 10

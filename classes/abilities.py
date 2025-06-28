@@ -52,11 +52,11 @@ Number of hits: {self.num_hits}
             
         else:
             print(f"This ability is not available yet!")
-            return None
+            return 0
         
     def check_avail(self):
         if self.user_level >= self.level_req:
-            return True
+            return "Unlocked!"
         else:
-            return False
+            return "Locked"
 

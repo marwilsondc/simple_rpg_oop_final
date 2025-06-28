@@ -34,6 +34,7 @@ class Character:
         if change < 0: 
             print(f"Took {change} damage! {self.name} Health: {self.current_hp}")
             self.current_hp += change
+
         elif change > 0: 
             print(f"Got healed {change} points! {self.name} Health: {self.current_hp}")
             self.current_hp += change

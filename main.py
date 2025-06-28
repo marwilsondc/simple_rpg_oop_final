@@ -1,4 +1,5 @@
 from classes.abilities import Abilities
+from classes.character import Character
 from classes.enemy import Enemy
 from classes.warrior import Warrior
 from classes.archer import Archer
@@ -17,7 +18,7 @@ print("(1) Warrior, (2) Mage, (3) Archer")
 while True:
     user_select = input("Select from the three classes (input the number): ")
 
-    if user_select.isnumeric() and user_select in range(1,4):
+    if user_select.isnumeric() and int(user_select) in range(1,4):
         user_select = int(user_select)
         break
     else:
@@ -43,63 +44,307 @@ else:
 
 while True:
     enemies = {
-        "goblin": Enemy("Goblin", level = user_hero.stats["Level"] - random.randint(0,2)),
-        "wolf": Enemy("Wolf", level = user_hero.stats["Level"] - random.randint(0,2), atk = 14, hp = 65),
+        "goblin": Enemy("Goblin", level = user_hero.stats["Level"] - random.randint(0,2), armor = 4),
+        "wolf": Enemy("Wolf", level = user_hero.stats["Level"] - random.randint(0,2), atk = 14, hp = 65, armor = 5),
         "slime": Enemy("Slime", level = user_hero.stats["Level"] - random.randint(0,2), atk = 8, hp = 60),
-        "kobold": Enemy("Kobold", level = user_hero.stats["Level"] - random.randint(0,2), hp = 40),
-        "twiglings": Enemy("Twiglings", level = user_hero.stats["Level"] - random.randint(0,2), atk = 12, hp = 75),
-        "bog frogs": Enemy("Bog Frogs", level = user_hero.stats["Level"] - random.randint(0,2), atk = 7, hp = 85),
-        "bandit": Enemy("Bandit", level = user_hero.stats["Level"] - random.randint(0,2), atk = 12, hp = 50),
-        "cultist": Enemy("Cultist", level = user_hero.stats["Level"] - random.randint(0,2), hp = 65),
+        "kobold": Enemy("Kobold", level = user_hero.stats["Level"] - random.randint(0,2), hp = 40, armor = 7),
+        "twiglings": Enemy("Twiglings", level = user_hero.stats["Level"] - random.randint(0,2), atk = 12, hp = 75, armor = 8),
+        "bog frogs": Enemy("Bog Frogs", level = user_hero.stats["Level"] - random.randint(0,2), atk = 7, hp = 85, armor = 3),
+        "bandit": Enemy("Bandit", level = user_hero.stats["Level"] - random.randint(0,2), atk = 12, hp = 50, armor = 5),
+        "cultist": Enemy("Cultist", level = user_hero.stats["Level"] - random.randint(0,2), hp = 65, armor = 4),
         "flame spores": Enemy("Flame Spores", level = user_hero.stats["Level"] - random.randint(0,2), atk = 15, hp = 25),
     }
 
     mid_enemies = {
-        "shadow duelist": Enemy("Shadow Duelist", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 19, hp = 110),
-        "mercenary brute": Enemy("Mercenary Brute", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 21, hp = 95),
-        "basilisk hatchling": Enemy("Basilisk Hatchling", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 18, hp = 70),
+        "shadow duelist": Enemy("Shadow Duelist", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 19, hp = 110, armor = 5),
+        "mercenary brute": Enemy("Mercenary Brute", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 21, hp = 95, armor = 10),
+        "basilisk hatchling": Enemy("Basilisk Hatchling", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 18, hp = 70, armor = 4),
         "chasm leaper": Enemy("Chasm Leaper", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 20, hp = 80),
-        "golem": Enemy("Golem", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 14, hp = 140),
+        "golem": Enemy("Golem", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 14, hp = 140, armor = 5),
         "sorrowbound": Enemy("Sorrowbound", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 18, hp = 115),
     }
 
     boss_enemies = {
-        "hollow king": Enemy("Hollow King", level = user_hero.stats["Level"] + random.randint(0,2), atk = 24, hp = 150),
-        "clockwork oracle": Enemy("Clockwork Oracle", level = user_hero.stats["Level"] + random.randint(0,2), atk = 18, hp = 160),
-        "leviathan": Enemy("Leviathan", level = user_hero.stats["Level"] + random.randint(0,2), atk = 19, hp = 130),
+        "hollow king": Enemy("Hollow King", level = user_hero.stats["Level"] + random.randint(0,2), atk = 24, hp = 150, armor = 15),
+        "clockwork oracle": Enemy("Clockwork Oracle", level = user_hero.stats["Level"] + random.randint(0,2), atk = 18, hp = 160, armor = 10),
+        "leviathan": Enemy("Leviathan", level = user_hero.stats["Level"] + random.randint(0,2), atk = 19, hp = 130, armor = 10),
     }
 
     room_level = 0
+    heal_cooldown = 0
 
     print(f"""
 Health: {user_hero.current_hp}/{user_hero.stats["HP"]}
 Mana: {user_hero.current_mana}/{user_hero.stats["Mana"]}
 
-Select from the options below!:
 1. Move to next room
 2. View Hero stats
 3. Use heal ability
 4. Quit
 """)
-    
+
     while True: 
         try:
-            user_select = int("Select from the options above: ")
+            user_select = int(input("Select from the options above: "))
             break
 
-        except TypeError:
+        except ValueError:
             print("Error: Invalid input")
             continue
 
     if user_select == 1:
-        if room_level < 5:
-            print(f"A {Events.normal_battle()} appeared!")
+        if room_level < 5 or room_level > 5:
+            monster_call = Events.normal_battle()
+            print(f"A {monster_call} appeared!")
+            actual_mon = enemies[monster_call]
+            actual_mon.apply_level()
+
+            while True:
+                print(f"""
+{user_hero}, choose from the actions:
+HP: {user_hero.current_hp}/{user_hero.stats["HP"]}
+Mana: {user_hero.current_mana}/{user_hero.stats["Mana"]}
+Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
+
+1. Attack
+2. Use ability
+3. Defend & Heal
+4. Run
+""")
+                while True:
+                    try:
+                        user_select = int(input("Select from the options above: "))
+                        if user_select < 4 and user_select > 0:
+                            break
+
+                    except ValueError:
+                        print("Error: Invalid input")
+                        continue
+                
+                if user_select == 1:
+                    damage = user_hero.attack(actual_mon.stats["Armor"])
+                    actual_mon.health(damage)
+
+                    if actual_mon.current_hp <= 0:
+                        gained_exp = 12 + (random.randint(2,4))
+                        print(f"{user_hero} has slain {actual_mon}! Gained {gained_exp}")
+                        user_hero.exp_up(gained_exp)
+                        break
+
+                
+                elif user_select == 2:
+                    print("Use which ability?: ")
+                    count = 0
+
+                    for i in user_hero.abilities:
+                        print(count, i)
+                        print(i.check_avail())
+                        count += 1
+                    
+                    while True:
+                        try:
+                            user_select = int(input("Select from the options above: "))
+                            if user_select <= count and user_select >= 0:
+                                break
+
+                        except ValueError:
+                            print("Error: Invalid input")
+                            continue
+                    
+                    print(f"Using {user_hero.abilities[user_select].name}...")
+
+                    damage = user_hero.abilities[user_select].use_ability()
+                    actual_mon.health(damage)
+
+                    if actual_mon.current_hp <= 0:
+                        gained_exp = 12 + (random.randint(2,4))
+                        print(f"{user_hero} has slain {actual_mon}! Gained {gained_exp}")
+                        user_hero.exp_up(gained_exp)
+                        break
+
+                else:
+                    print(f"{user_hero} chickened out! No exp gained.")
+                    break
+
+                print(f"{actual_mon} attacked {user_hero}")
+                damage = actual_mon.attack(user_hero.stats["Armor"])
+                user_hero.health(damage)
+
+                room_level += 1
+
+        elif room_level == 5:
+            monster_call = Events.mid_battle()
+            print(f"A mid-boss: {monster_call} appeared!")
+            actual_mon = mid_enemies[monster_call]
+            actual_mon.apply_level()
+
+            while True:
+                print(f"""
+{user_hero}, choose from the actions:
+HP: {user_hero.current_hp}/{user_hero.stats["HP"]}
+Mana: {user_hero.current_mana}/{user_hero.stats["Mana"]}
+Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
+
+1. Attack
+2. Use ability
+3. Run
+""")
+                while True:
+
+                    try:
+                        user_select = int(input("Select from the options above: "))
+                        if user_select < 4 and user_select > 0:
+                            break
+
+                    except ValueError:
+                        print("Error: Invalid input")
+                        continue
+                
+                if user_select == 1:
+                    damage = user_hero.attack(actual_mon.stats["Armor"])
+                    actual_mon.health(damage)
+
+                    if actual_mon.current_hp <= 0:
+                        gained_exp = 12 + (random.randint(2,4))
+                        print(f"{user_hero} has slain {actual_mon}! Gained {gained_exp}")
+                        user_hero.exp_up(gained_exp)
+                        break
+
+                
+                elif user_select == 2:
+                    print("Use which ability?: ")
+                    count = 0
+
+                    for i in user_hero.abilities:
+                        print(count, i)
+                        print(i.check_avail())
+                        count += 1
+                    
+                    while True:
+
+                        try:
+                            user_select = int(input("Select from the options above: "))
+                            if user_select <= count and user_select >= 0:
+                                break
+
+                        except ValueError:
+                            print("Error: Invalid input")
+                            continue
+                    
+                    print(f"Using {user_hero.abilities[user_select].name}...")
+
+                    damage = user_hero.abilities[user_select].use_ability()
+                    actual_mon.health(damage)
+
+                    if actual_mon.current_hp <= 0:
+                        gained_exp = 12 + (random.randint(2,4))
+                        print(f"{user_hero} has slain {actual_mon}! Gained {gained_exp}")
+                        user_hero.exp_up(gained_exp)
+                        break
+
+                else:
+                    print(f"{user_hero} chickened out! No exp gained.")
+                    break
+
+                print(f"{actual_mon} attacked {user_hero}")
+                damage = actual_mon.attack(user_hero.stats["Armor"])
+                user_hero.health(damage)
+
+            room_level += 1
+
+        elif room_level == 10:
+            monster_call = Events.boss_battle()
+            print(f"A boss: {monster_call} appeared!")
+            actual_mon = boss_enemies[monster_call]
+            actual_mon.apply_level()
+
+            while True:
+
+                print(f"""
+{user_hero}, choose from the actions:
+HP: {user_hero.current_hp}/{user_hero.stats["HP"]}
+Mana: {user_hero.current_mana}/{user_hero.stats["Mana"]}
+Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
+
+1. Attack
+2. Use ability
+3. Run
+""")
+                while True:
+
+                    try:
+                        user_select = int(input("Select from the options above: "))
+                        if user_select < 4 and user_select > 0:
+                            break
+
+                    except ValueError:
+                        print("Error: Invalid input")
+                        continue
+                
+                if user_select == 1:
+                    damage = user_hero.attack(actual_mon.stats["Armor"])
+                    actual_mon.health(damage)
+
+                    if actual_mon.current_hp <= 0:
+                        gained_exp = 12 + (random.randint(2,4))
+                        print(f"{user_hero} has slain {actual_mon}! Gained {gained_exp}")
+                        user_hero.exp_up(gained_exp)
+                        break
+
+                
+                elif user_select == 2:
+                    print("Use which ability?: ")
+                    count = 0
+
+                    for i in user_hero.abilities:
+                        print(count, i)
+                        print(i.check_avail())
+                        count += 1
+                    
+                    while True:
+
+                        try:
+                            user_select = int(input("Select from the options above: "))
+                            if user_select <= count and user_select >= 0:
+                                break
+
+                        except ValueError:
+                            print("Error: Invalid input")
+                            continue
+                    
+                    print(f"Using {user_hero.abilities[user_select].name}...")
+
+                    damage = user_hero.abilities[user_select].use_ability()
+                    actual_mon.health(damage)
+
+                    if actual_mon.current_hp <= 0:
+                        gained_exp = 12 + (random.randint(2,4))
+                        print(f"{user_hero} has slain {actual_mon}! Gained {gained_exp}")
+                        user_hero.exp_up(gained_exp)
+                        break
+
+                else:
+                    print(f"{user_hero} chickened out! No exp gained.")
+                    break
+
+                print(f"{actual_mon} attacked {user_hero}")
+                damage = actual_mon.attack(user_hero.stats["Armor"])
+                user_hero.health(damage)
+
+            room_level = 0
 
     elif user_select == 2:
-        pass
+        print(f"Showing {user_hero}'s Stats:")
+        
+        for stat, value in user_hero.stats.items():
+            print(f"{stat}: {value}")
 
     elif user_select == 3:
-        pass
+        if heal_cooldown == 0:
+            user_hero.health(user_hero.stats["HP"])
+            heal_cooldown = 3
+        else:
+            print(f"Heal is in cooldown: {heal_cooldown} more battle/s.")
 
     elif user_select == 4:
         break

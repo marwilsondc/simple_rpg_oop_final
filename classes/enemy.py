@@ -1,4 +1,4 @@
-from character import Character
+from .character import Character
 from math import ceil
 import random
 
@@ -20,7 +20,7 @@ class Enemy(Character):
         return self.name
     
     #def attack()
-    def attack(self, enemy_armor):
+    def attack(self, enemy_armor: int):
         rand_num_gen = random.randint(1, 100)
         miss_rng = random.randint(1, 100)
         miss_chance = 8
