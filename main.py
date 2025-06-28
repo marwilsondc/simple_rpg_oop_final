@@ -41,32 +41,32 @@ else:
     print(f"Welcome to the world! {user_hero}")
 
 while True:
-    enemies = [
-        Enemy("Goblin", level = user_hero.stats["Level"] - random.randint(0,2)),
-        Enemy("Wolf", level = user_hero.stats["Level"] - random.randint(0,2), atk = 14, hp = 65),
-        Enemy("Slime", level = user_hero.stats["Level"] - random.randint(0,2), atk = 8, hp = 60),
-        Enemy("Kobold", level = user_hero.stats["Level"] - random.randint(0,2), hp = 40),
-        Enemy("Twiglings", level = user_hero.stats["Level"] - random.randint(0,2), atk = 12, hp = 75),
-        Enemy("Bog Frogs", level = user_hero.stats["Level"] - random.randint(0,2), atk = 7, hp = 85),
-        Enemy("Bandit", level = user_hero.stats["Level"] - random.randint(0,2), atk = 12, hp = 50),
-        Enemy("Cultist", level = user_hero.stats["Level"] - random.randint(0,2), hp = 65),
-        Enemy("Flame Spores", level = user_hero.stats["Level"] - random.randint(0,2), atk = 15, hp = 25),
-    ]
+    enemies = {
+        "goblin": Enemy("Goblin", level = user_hero.stats["Level"] - random.randint(0,2)),
+        "wolf": Enemy("Wolf", level = user_hero.stats["Level"] - random.randint(0,2), atk = 14, hp = 65),
+        "slime": Enemy("Slime", level = user_hero.stats["Level"] - random.randint(0,2), atk = 8, hp = 60),
+        "kobold": Enemy("Kobold", level = user_hero.stats["Level"] - random.randint(0,2), hp = 40),
+        "twiglings": Enemy("Twiglings", level = user_hero.stats["Level"] - random.randint(0,2), atk = 12, hp = 75),
+        "bog frogs": Enemy("Bog Frogs", level = user_hero.stats["Level"] - random.randint(0,2), atk = 7, hp = 85),
+        "bandit": Enemy("Bandit", level = user_hero.stats["Level"] - random.randint(0,2), atk = 12, hp = 50),
+        "cultist": Enemy("Cultist", level = user_hero.stats["Level"] - random.randint(0,2), hp = 65),
+        "flame spores": Enemy("Flame Spores", level = user_hero.stats["Level"] - random.randint(0,2), atk = 15, hp = 25),
+    }
 
-    mid_enemies = [
-        Enemy("Shadow Duelist", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 19, hp = 110),
-        Enemy("Mercenary Brutes", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 21, hp = 95),
-        Enemy("Basilisk Hatchling", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 18, hp = 70),
-        Enemy("Chasm Leaper", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 20, hp = 80),
-        Enemy("Golem", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 14, hp = 140),
-        Enemy("Sorrowbound", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 18, hp = 115),
-    ]
+    mid_enemies = {
+        "shadow duelist": Enemy("Shadow Duelist", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 19, hp = 110),
+        "mercenary brutes": Enemy("Mercenary Brutes", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 21, hp = 95),
+        "basilisk hatchling": Enemy("Basilisk Hatchling", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 18, hp = 70),
+        "chasm leaper": Enemy("Chasm Leaper", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 20, hp = 80),
+        "golem": Enemy("Golem", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 14, hp = 140),
+        "sorrowbound": Enemy("Sorrowbound", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 18, hp = 115),
+    }
 
-    boss_enemies = [
-        Enemy("Hollow King", level = user_hero.stats["Level"] + random.randint(0,2), atk = 24, hp = 150),
-        Enemy("Clockwork Oracle", level = user_hero.stats["Level"] + random.randint(0,2), atk = 18, hp = 160),
-        Enemy("Leviathan", level = user_hero.stats["Level"] + random.randint(0,2), atk = 19, hp = 130),
-    ]
+    boss_enemies = {
+        "hollow king": Enemy("Hollow King", level = user_hero.stats["Level"] + random.randint(0,2), atk = 24, hp = 150),
+        "clockwork oracle": Enemy("Clockwork Oracle", level = user_hero.stats["Level"] + random.randint(0,2), atk = 18, hp = 160),
+        "leviathan": Enemy("Leviathan", level = user_hero.stats["Level"] + random.randint(0,2), atk = 19, hp = 130),
+    }
 
     room_level = 0
 
