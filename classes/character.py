@@ -28,23 +28,27 @@ class Character:
     
     #def health()
     def health(self, change):
-        self.current_hp += change
 
         if change < 0: 
             print(f"Took {change} damage! {self.name} Health: {self.current_hp}")
-        else: 
+            self.current_hp += change
+        elif change > 0: 
             print(f"Got healed {change} points! {self.name} Health: {self.current_hp}")
-
+            self.current_hp += change
+        else:
+            print("The action failed!")
 
     #def mana()
     def mana(self, change):
-        self.base_mana += change
         
         if change < 0: 
             print(f"Spent {change} mana! {self.name} mana: {self.base_mana}")
-
-        else:
+            self.current_mana += change
+        elif change > 0:
             print(f"Granted {change} mana! {self.name} mana: {self.base_mana}")
+            self.current_mana += change
+        else:
+            print(f"The action failed!")
 
     #def exp_up()
     def exp_up(self, change):

@@ -31,7 +31,7 @@ Number of hits: {self.num_hits}
                     print(f"Oof! Casted {self.name} missed the enemy!")
                     return 0
                 else:
-                    return self.power
+                    return -(self.power)
             
             elif self.ability_type == "Multi-hit Ability":
                 damage = 0
@@ -48,7 +48,7 @@ Number of hits: {self.num_hits}
                         damage += self.power
                     
                 print(f"{self.name} hit {hit_times}x and dealt {damage} damage!")
-                return damage
+                return -(damage)
             
         else:
             print(f"This ability is not available yet!")
