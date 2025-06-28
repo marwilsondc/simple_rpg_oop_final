@@ -95,8 +95,8 @@ class Events:
     def looting():
         random_number = random.randint(1,100)
         common_armor = range(1,61)
-        rare_armor = range(61,81)
-        legendary_armor = range(81,96)
+        rare_armor = range(61,86)
+        legendary_armor = range(86,96)
         mythical_armor = range(96,101)
 
         if random_number in common_armor:

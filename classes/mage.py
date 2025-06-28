@@ -1,4 +1,4 @@
-from math import ceil
+from math import floor
 import random 
 from .character import Character
 from .abilities import Abilities
@@ -25,7 +25,7 @@ class Mage(Character):
         miss_chance = 8
 
         if rand_num_gen <= self.stats["Crit Rate"]:
-            damage = -((self.stats["Attack"] + (self.stats["Attack"] * self.stats["Crit Dmg"])) - ceil(enemy_armor * 0.17))
+            damage = -((self.stats["Attack"] + (self.stats["Attack"] * self.stats["Crit Dmg"])) * (1 - floor(enemy_armor / 110)))
             print(f"Critical hit! {self.name} was favored by the gods and dealt {damage} damage!")
             return damage
         
@@ -34,7 +34,7 @@ class Mage(Character):
             return 0
         
         else:
-            damage = -(self.stats["Attack"] - ceil(enemy_armor * 0.21))
+            damage = -(self.stats["Attack"] * (1 - floor(enemy_armor / 110)))
             print(f"{self.name} cast their fireball toward the enemy and dealt {damage} damage!")
             return damage
         

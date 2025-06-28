@@ -1,5 +1,5 @@
 from .character import Character
-from math import ceil
+from math import floor
 import random
 
 class Enemy(Character):
@@ -26,7 +26,7 @@ class Enemy(Character):
         miss_chance = 8
 
         if rand_num_gen <= self.stats["Crit Rate"]:
-            damage = -((self.stats["Attack"] + (self.stats["Attack"] * self.stats["Crit Dmg"])) - ceil(enemy_armor * 0.3))
+            damage = -((self.stats["Attack"] + (self.stats["Attack"] * self.stats["Crit Dmg"])) * (1 - floor(enemy_armor / 110)))
             print(f"OOF! Critical hit! {self.name} did {damage} damage!")
             return damage
         
@@ -35,5 +35,5 @@ class Enemy(Character):
             return 0
 
         else:
-            damage = -(self.stats["Attack"] - ceil(enemy_armor * 0.35))
+            damage = -(self.stats["Attack"] * (1 - floor(enemy_armor / 110)))
             return damage

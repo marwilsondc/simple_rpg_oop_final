@@ -48,30 +48,30 @@ battle_heal_cooldown = 0
 
 while True:
     enemies = {
-        "goblin": Enemy("Goblin", level = user_hero.stats["Level"] - random.randint(0,2), armor = 4),
-        "wolf": Enemy("Wolf", level = user_hero.stats["Level"] - random.randint(0,2), atk = 14, hp = 65, armor = 5),
-        "slime": Enemy("Slime", level = user_hero.stats["Level"] - random.randint(0,2), atk = 8, hp = 60),
-        "kobold": Enemy("Kobold", level = user_hero.stats["Level"] - random.randint(0,2), hp = 40, armor = 7),
-        "twiglings": Enemy("Twiglings", level = user_hero.stats["Level"] - random.randint(0,2), atk = 12, hp = 75, armor = 8),
-        "bog frogs": Enemy("Bog Frogs", level = user_hero.stats["Level"] - random.randint(0,2), atk = 7, hp = 85, armor = 3),
-        "bandit": Enemy("Bandit", level = user_hero.stats["Level"] - random.randint(0,2), atk = 12, hp = 50, armor = 5),
-        "cultist": Enemy("Cultist", level = user_hero.stats["Level"] - random.randint(0,2), hp = 65, armor = 4),
-        "flame spores": Enemy("Flame Spores", level = user_hero.stats["Level"] - random.randint(0,2), atk = 15, hp = 25),
+        "goblin": Enemy("Goblin", level = user_hero.stats["Level"] - random.randint(0,2), armor = 23),
+        "wolf": Enemy("Wolf", level = user_hero.stats["Level"] - random.randint(0,2), atk = 14, hp = 65, armor = 20),
+        "slime": Enemy("Slime", level = user_hero.stats["Level"] - random.randint(0,2), atk = 8, hp = 60, armor = 18),
+        "kobold": Enemy("Kobold", level = user_hero.stats["Level"] - random.randint(0,2), hp = 40, armor = 25),
+        "twiglings": Enemy("Twiglings", level = user_hero.stats["Level"] - random.randint(0,2), atk = 12, hp = 75, armor = 19),
+        "bog frogs": Enemy("Bog Frogs", level = user_hero.stats["Level"] - random.randint(0,2), atk = 7, hp = 85, armor = 18),
+        "bandit": Enemy("Bandit", level = user_hero.stats["Level"] - random.randint(0,2), atk = 12, hp = 50, armor = 20),
+        "cultist": Enemy("Cultist", level = user_hero.stats["Level"] - random.randint(0,2), hp = 65, armor = 19),
+        "flame spores": Enemy("Flame Spores", level = user_hero.stats["Level"] - random.randint(0,2), atk = 15, hp = 25, armor = 15),
     }
 
     mid_enemies = {
-        "shadow duelist": Enemy("Shadow Duelist", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 19, hp = 110, armor = 5),
-        "mercenary brute": Enemy("Mercenary Brute", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 21, hp = 95, armor = 10),
-        "basilisk hatchling": Enemy("Basilisk Hatchling", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 18, hp = 70, armor = 4),
-        "chasm leaper": Enemy("Chasm Leaper", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 20, hp = 80),
-        "golem": Enemy("Golem", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 14, hp = 140, armor = 5),
-        "sorrowbound": Enemy("Sorrowbound", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 18, hp = 115),
+        "shadow duelist": Enemy("Shadow Duelist", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 19, hp = 110, armor = 35),
+        "mercenary brute": Enemy("Mercenary Brute", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 21, hp = 95, armor = 30),
+        "basilisk hatchling": Enemy("Basilisk Hatchling", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 18, hp = 70, armor = 33),
+        "chasm leaper": Enemy("Chasm Leaper", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 20, hp = 80, armor = 23),
+        "golem": Enemy("Golem", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 14, hp = 140, armor = 40),
+        "sorrowbound": Enemy("Sorrowbound", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 18, hp = 115, armor = 20),
     }
 
     boss_enemies = {
-        "hollow king": Enemy("Hollow King", level = user_hero.stats["Level"] + random.randint(0,2), atk = 24, hp = 150, armor = 15),
-        "clockwork oracle": Enemy("Clockwork Oracle", level = user_hero.stats["Level"] + random.randint(0,2), atk = 18, hp = 160, armor = 10),
-        "leviathan": Enemy("Leviathan", level = user_hero.stats["Level"] + random.randint(0,2), atk = 19, hp = 130, armor = 10),
+        "hollow king": Enemy("Hollow King", level = user_hero.stats["Level"] + random.randint(0,2), atk = 24, hp = 150, armor = 50),
+        "clockwork oracle": Enemy("Clockwork Oracle", level = user_hero.stats["Level"] + random.randint(0,2), atk = 18, hp = 160, armor = 43),
+        "leviathan": Enemy("Leviathan", level = user_hero.stats["Level"] + random.randint(0,2), atk = 19, hp = 130, armor = 40),
     }
 
     print(f"""
@@ -133,7 +133,7 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                         print(f"{user_hero} has slain {actual_mon}! Gained {gained_exp}")
                         user_hero.exp_up(gained_exp)
                         armor_loot = Events.looting()
-                        user_select = input("Do you want to equip this?: y/n?")
+                        user_select = input("Do you want to equip this?: y/n? ")
                         if user_select == "y":
                             user_hero.equip_armor(armor_loot)
                             break
@@ -173,7 +173,7 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                         print(f"{user_hero} has slain {actual_mon}! Gained {gained_exp}")
                         user_hero.exp_up(gained_exp)
                         armor_loot = Events.looting()
-                        user_select = input("Do you want to equip this?: y/n?")
+                        user_select = input("Do you want to equip this?: y/n? ")
                         if user_select == "y":
                             user_hero.equip_armor(armor_loot)
                             break
@@ -248,7 +248,7 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                         print(f"{user_hero} has slain {actual_mon}! Gained {gained_exp}")
                         user_hero.exp_up(gained_exp)
                         armor_loot = Events.looting()
-                        user_select = input("Do you want to equip this?: y/n?")
+                        user_select = input("Do you want to equip this?: y/n? ")
                         if user_select == "y":
                             user_hero.equip_armor(armor_loot)
                             break
@@ -287,7 +287,7 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                         print(f"{user_hero} has slain {actual_mon}! Gained {gained_exp}")
                         user_hero.exp_up(gained_exp)
                         armor_loot = Events.looting()
-                        user_select = input("Do you want to equip this?: y/n?")
+                        user_select = input("Do you want to equip this?: y/n? ")
                         if user_select == "y":
                             user_hero.equip_armor(armor_loot)
                             break
@@ -359,7 +359,7 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                         print(f"{user_hero} has slain {actual_mon}! Gained {gained_exp}")
                         user_hero.exp_up(gained_exp)
                         armor_loot = Events.looting()
-                        user_select = input("Do you want to equip this?: y/n?")
+                        user_select = input("Do you want to equip this?: y/n? ")
                         if user_select == "y":
                             user_hero.equip_armor(armor_loot)
                             break
@@ -399,7 +399,7 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                         print(f"{user_hero} has slain {actual_mon}! Gained {gained_exp}")
                         user_hero.exp_up(gained_exp)
                         armor_loot = Events.looting()
-                        user_select = input("Do you want to equip this?: y/n?")
+                        user_select = input("Do you want to equip this?: y/n? ")
                         if user_select == "y":
                             user_hero.equip_armor(armor_loot)
                             break
