@@ -132,7 +132,15 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                         gained_exp = 12 + (random.randint(2,4))
                         print(f"{user_hero} has slain {actual_mon}! Gained {gained_exp}")
                         user_hero.exp_up(gained_exp)
-                        break
+                        armor_loot = Events.looting()
+                        user_select = input("Do you want to equip this?: y/n?")
+                        if user_select == "y":
+                            user_hero.equip_armor(armor_loot)
+                            break
+
+                        elif user_select == "n":
+                            break
+                        
 
                 
                 elif user_select == 2:
@@ -156,7 +164,7 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                     print(f"Using {user_hero.abilities[user_select].name}...")
 
                     damage = user_hero.abilities[user_select].use_ability()
-                    spent_mana = user_hero.abilities[user_select].mana_req
+                    spent_mana = -(user_hero.abilities[user_select].mana_req)
                     user_hero.mana(spent_mana)
                     actual_mon.health(damage)
 
@@ -164,7 +172,14 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                         gained_exp = 12 + (random.randint(2,4))
                         print(f"{user_hero} has slain {actual_mon}! Gained {gained_exp}")
                         user_hero.exp_up(gained_exp)
-                        break
+                        armor_loot = Events.looting()
+                        user_select = input("Do you want to equip this?: y/n?")
+                        if user_select == "y":
+                            user_hero.equip_armor(armor_loot)
+                            break
+
+                        elif user_select == "n":
+                            break
 
                 elif user_select == 3:
                     if battle_heal_cooldown <= 0:
@@ -232,8 +247,14 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                         gained_exp = 12 + (random.randint(2,4))
                         print(f"{user_hero} has slain {actual_mon}! Gained {gained_exp}")
                         user_hero.exp_up(gained_exp)
-                        break
+                        armor_loot = Events.looting()
+                        user_select = input("Do you want to equip this?: y/n?")
+                        if user_select == "y":
+                            user_hero.equip_armor(armor_loot)
+                            break
 
+                        elif user_select == "n":
+                            break
                 
                 elif user_select == 2:
                     print("Use which ability?: ")
@@ -257,7 +278,7 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                     print(f"Using {user_hero.abilities[user_select].name}...")
 
                     damage = user_hero.abilities[user_select].use_ability()
-                    spent_mana = user_hero.abilities[user_select].mana_req
+                    spent_mana = -(user_hero.abilities[user_select].mana_req)
                     user_hero.mana(spent_mana)
                     actual_mon.health(damage)
 
@@ -265,7 +286,14 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                         gained_exp = 12 + (random.randint(2,4))
                         print(f"{user_hero} has slain {actual_mon}! Gained {gained_exp}")
                         user_hero.exp_up(gained_exp)
-                        break
+                        armor_loot = Events.looting()
+                        user_select = input("Do you want to equip this?: y/n?")
+                        if user_select == "y":
+                            user_hero.equip_armor(armor_loot)
+                            break
+
+                        elif user_select == "n":
+                            break
 
                 elif user_select == 3:
                     if battle_heal_cooldown <= 0:
@@ -330,7 +358,14 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                         gained_exp = 12 + (random.randint(2,4))
                         print(f"{user_hero} has slain {actual_mon}! Gained {gained_exp}")
                         user_hero.exp_up(gained_exp)
-                        break
+                        armor_loot = Events.looting()
+                        user_select = input("Do you want to equip this?: y/n?")
+                        if user_select == "y":
+                            user_hero.equip_armor(armor_loot)
+                            break
+
+                        elif user_select == "n":
+                            break
 
                 
                 elif user_select == 2:
@@ -355,7 +390,7 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                     print(f"Using {user_hero.abilities[user_select].name}...")
 
                     damage = user_hero.abilities[user_select].use_ability()
-                    spent_mana = user_hero.abilities[user_select].mana_req
+                    spent_mana = -(user_hero.abilities[user_select].mana_req)
                     user_hero.mana(spent_mana)
                     actual_mon.health(damage)
 
@@ -363,7 +398,14 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                         gained_exp = 12 + (random.randint(2,4))
                         print(f"{user_hero} has slain {actual_mon}! Gained {gained_exp}")
                         user_hero.exp_up(gained_exp)
-                        break
+                        armor_loot = Events.looting()
+                        user_select = input("Do you want to equip this?: y/n?")
+                        if user_select == "y":
+                            user_hero.equip_armor(armor_loot)
+                            break
+
+                        elif user_select == "n":
+                            break
 
                 elif user_select == 3:
                     if battle_heal_cooldown <= 0:

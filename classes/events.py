@@ -92,7 +92,7 @@ class Events:
             return monster
 
     @staticmethod    
-    def looting(level):
+    def looting():
         random_number = random.randint(1,100)
         common_armor = range(1,61)
         rare_armor = range(61,81)
