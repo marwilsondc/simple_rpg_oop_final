@@ -1,6 +1,7 @@
 from math import ceil
 import random 
 from character import Character
+from abilities import Abilities
 
 class Warrior(Character):
     def __init__(self, name = "Bob"):
@@ -9,7 +10,6 @@ class Warrior(Character):
         self.current_hp = self.base_hp
         self.base_mana = 50
         self.current_mana = self.base_mana
-
     
     def __str__(self):
         return f"""
@@ -43,3 +43,5 @@ CritDmg: {self.crit_dmg}
             damage = -(self.base_atk - ceil(enemy_armor * 0.25))
             print(f"{self.name} slashed their sword on the enemy and dealt {damage} damage!")
             return damage
+        
+    
