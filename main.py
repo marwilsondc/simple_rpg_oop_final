@@ -3,6 +3,7 @@ from classes.enemy import Enemy
 from classes.warrior import Warrior
 from classes.archer import Archer
 from classes.mage import Mage
+from classes.events import Events
 import time
 import random
 
@@ -55,7 +56,7 @@ while True:
 
     mid_enemies = {
         "shadow duelist": Enemy("Shadow Duelist", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 19, hp = 110),
-        "mercenary brutes": Enemy("Mercenary Brutes", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 21, hp = 95),
+        "mercenary brute": Enemy("Mercenary Brute", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 21, hp = 95),
         "basilisk hatchling": Enemy("Basilisk Hatchling", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 18, hp = 70),
         "chasm leaper": Enemy("Chasm Leaper", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 20, hp = 80),
         "golem": Enemy("Golem", level = user_hero.stats["Level"] + random.randint(-1,1), atk = 14, hp = 140),
@@ -91,7 +92,8 @@ Select from the options below!:
             continue
 
     if user_select == 1:
-        pass
+        if room_level < 5:
+            print(f"A {Events.normal_battle()} appeared!")
 
     elif user_select == 2:
         pass
