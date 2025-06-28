@@ -42,6 +42,10 @@ else:
     user_hero = Archer(user_name)
     print(f"Welcome to the world! {user_hero}")
 
+room_level = 0
+heal_cooldown = 0
+battle_heal_cooldown = 0
+
 while True:
     enemies = {
         "goblin": Enemy("Goblin", level = user_hero.stats["Level"] - random.randint(0,2), armor = 4),
@@ -70,10 +74,6 @@ while True:
         "leviathan": Enemy("Leviathan", level = user_hero.stats["Level"] + random.randint(0,2), atk = 19, hp = 130, armor = 10),
     }
 
-    room_level = 0
-    heal_cooldown = 0
-    battle_heal_cooldown = 0
-
     print(f"""
 Health: {user_hero.current_hp}/{user_hero.stats["HP"]}
 Mana: {user_hero.current_mana}/{user_hero.stats["Mana"]}
@@ -101,6 +101,8 @@ Mana: {user_hero.current_mana}/{user_hero.stats["Mana"]}
             actual_mon.apply_level()
 
             while True:
+                battle_heal_cooldown -= 0
+
                 print(f"""
 {user_hero}, choose from the actions:
 HP: {user_hero.current_hp}/{user_hero.stats["HP"]}
@@ -164,7 +166,7 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                         break
 
                 elif user_select == 3:
-                    if battle_heal_cooldown == 0:
+                    if battle_heal_cooldown <= 0:
                         user_hero.health(user_hero.stats["HP"]*0.25)
                         print(f"{user_hero} defended himself from attacks and blocked the attack!")
                         battle_heal_cooldown = 3
@@ -181,7 +183,8 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                 damage = actual_mon.attack(user_hero.stats["Armor"])
                 user_hero.health(damage)
 
-                room_level += 1
+            room_level += 1
+            heal_cooldown -= 1
 
         elif room_level == 5:
             monster_call = Events.mid_battle()
@@ -190,6 +193,8 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
             actual_mon.apply_level()
 
             while True:
+                battle_heal_cooldown -= 1
+
                 print(f"""
 {user_hero}, choose from the actions:
 HP: {user_hero.current_hp}/{user_hero.stats["HP"]}
@@ -255,7 +260,7 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                         break
 
                 elif user_select == 3:
-                    if battle_heal_cooldown == 0:
+                    if battle_heal_cooldown <= 0:
                         user_hero.health(user_hero.stats["HP"]*0.25)
                         print(f"{user_hero} defended himself from attacks and blocked the attack!")
                         battle_heal_cooldown = 3
@@ -270,6 +275,7 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                 user_hero.health(damage)
 
             room_level += 1
+            heal_cooldown -= 1
 
         elif room_level == 10:
             monster_call = Events.boss_battle()
@@ -278,6 +284,7 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
             actual_mon.apply_level()
 
             while True:
+                battle_heal_cooldown -= 1
 
                 print(f"""
 {user_hero}, choose from the actions:
@@ -344,7 +351,7 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                         break
 
                 elif user_select == 3:
-                    if battle_heal_cooldown == 0:
+                    if battle_heal_cooldown <= 0:
                         user_hero.health(user_hero.stats["HP"]*0.25)
                         print(f"{user_hero} defended himself from attacks and blocked the attack!")
                         battle_heal_cooldown = 3
@@ -359,6 +366,7 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                 user_hero.health(damage)
 
             room_level = 0
+            heal_cooldown -= 1
 
     elif user_select == 2:
         print(f"Showing {user_hero}'s Stats:")
@@ -367,7 +375,7 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
             print(f"{stat}: {value}")
 
     elif user_select == 3:
-        if heal_cooldown == 0:
+        if heal_cooldown <= 0:
             user_hero.health(user_hero.stats["HP"] - user_hero.current_hp)
             heal_cooldown = 3
         else:

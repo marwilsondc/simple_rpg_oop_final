@@ -61,9 +61,9 @@ class Character:
         if self.stats["Experience"] >= 50:
             self.stats["Experience"] = self.stats["Experience"] - 50
             self.stats["Level"] += 1
-            self.stats["Attack"] = 17 + (self.stats["Level"] * 3)
-            self.stats["HP"] = 100 + (self.stats["Level"] * 15)
-            self.stats["Mana"] = 60 + (self.stats["Level"] * 5)
+            self.stats["Attack"] = self.stats["Attack"] + (self.stats["Level"] * 3)
+            self.stats["HP"] = self.stats["HP"] + (self.stats["Level"] * 15)
+            self.stats["Mana"] = self.stats["Mana"] + (self.stats["Level"] * 5)
             self.current_hp = self.stats["HP"]
             self.current_mana = self.stats["Mana"]
 
