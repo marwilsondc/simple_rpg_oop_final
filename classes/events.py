@@ -90,3 +90,27 @@ class Events:
             print("A musky scent meets you, you entered a Swamp room and encountered a Boss monster!")
             monster = random.choice(swamp)
             return monster
+
+    @staticmethod    
+    def looting(level):
+        random_number = random.randint(1,100)
+        common_armor = range(1,61)
+        rare_armor = range(61,81)
+        legendary_armor = range(81,96)
+        mythical_armor = range(96,101)
+
+        if random_number in common_armor:
+            print("You have found leather armor (Common)!")
+            return 10 + random.randint(1,10)
+        
+        elif random_number in rare_armor:
+            print("You have found chainmail armor (Rare)!")
+            return 20 + random.randint(1,30)
+
+        elif random_number in legendary_armor:
+            print("You have found alloy armor (Legendary)!")
+            return 50 + random.randint(1,20)
+        
+        elif random_number in mythical_armor:
+            print("You have found Ancient Magical Armor (Mythical)!")
+            return 70 + random.randint(1,30)

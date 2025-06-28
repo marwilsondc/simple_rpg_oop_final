@@ -140,8 +140,7 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                     count = 0
 
                     for i in user_hero.abilities:
-                        print(count, i)
-                        print(i.check_avail())
+                        print(count, i, i.check_avail(), "\n")
                         count += 1
                     
                     while True:
@@ -157,6 +156,8 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                     print(f"Using {user_hero.abilities[user_select].name}...")
 
                     damage = user_hero.abilities[user_select].use_ability()
+                    spent_mana = user_hero.abilities[user_select].mana_req
+                    user_hero.mana(spent_mana)
                     actual_mon.health(damage)
 
                     if actual_mon.current_hp <= 0:
@@ -239,8 +240,7 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                     count = 0
 
                     for i in user_hero.abilities:
-                        print(count, i)
-                        print(i.check_avail())
+                        print(count, i, count, i, i.check_avail(), "\n")
                         count += 1
                     
                     while True:
@@ -257,6 +257,8 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                     print(f"Using {user_hero.abilities[user_select].name}...")
 
                     damage = user_hero.abilities[user_select].use_ability()
+                    spent_mana = user_hero.abilities[user_select].mana_req
+                    user_hero.mana(spent_mana)
                     actual_mon.health(damage)
 
                     if actual_mon.current_hp <= 0:
@@ -336,8 +338,7 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                     count = 0
 
                     for i in user_hero.abilities:
-                        print(count, i)
-                        print(i.check_avail())
+                        print(count, i, count, i, i.check_avail(), "\n")
                         count += 1
                     
                     while True:
@@ -354,6 +355,8 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                     print(f"Using {user_hero.abilities[user_select].name}...")
 
                     damage = user_hero.abilities[user_select].use_ability()
+                    spent_mana = user_hero.abilities[user_select].mana_req
+                    user_hero.mana(spent_mana)
                     actual_mon.health(damage)
 
                     if actual_mon.current_hp <= 0:

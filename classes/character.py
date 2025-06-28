@@ -66,6 +66,9 @@ class Character:
             self.stats["Attack"] = self.stats["Attack"] + ((self.stats["Level"] - 1) * 3)
             self.stats["HP"] = self.stats["HP"] + ((self.stats["Level"] - 1) * 15)
             self.stats["Mana"] = self.stats["Mana"] + ((self.stats["Level"] - 1) * 5)
+            self.stats["Armor"] = self.stats["Armor"] + ((self.stats["Level"] - 1) * 2.5)
+            self.stats["Crit Rate"] = self.stats["Crit Rate"] + ((self.stats["Level"] - 1) * 1)
+            self.stats["Crit Dmg"] = self.stats["Crit Dmg"] + ((self.stats["Level"] - 1) * 0.025)
             self.current_hp = self.stats["HP"]
             self.current_mana = self.stats["Mana"]
 
