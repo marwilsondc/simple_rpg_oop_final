@@ -13,7 +13,7 @@ class Character:
             "Crit Rate": 15,
             "Crit Dmg": 0.5,
             "Experience": 0,
-            "Overall Exp.": 0,
+            "Overall Exp": 0,
         }
         self.current_hp = self.stats["HP"]
         self.current_mana = self.stats["Mana"]
@@ -58,8 +58,8 @@ class Character:
         self.stats["Experience"] += change
         self.stats["Overall Exp"] += change
 
-        if self.experience >= 50:
-            self.experience = self.experience - 50
+        if self.stats["Experience"] >= 50:
+            self.stats["Experience"] = self.stats["Experience"] - 50
             self.stats["Level"] += 1
             self.stats["Attack"] = 17 + (self.stats["Level"] * 3)
             self.stats["HP"] = 100 + (self.stats["Level"] * 15)

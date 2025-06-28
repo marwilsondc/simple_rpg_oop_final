@@ -72,6 +72,7 @@ while True:
 
     room_level = 0
     heal_cooldown = 0
+    battle_heal_cooldown = 0
 
     print(f"""
 Health: {user_hero.current_hp}/{user_hero.stats["HP"]}
@@ -114,7 +115,7 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                 while True:
                     try:
                         user_select = int(input("Select from the options above: "))
-                        if user_select < 4 and user_select > 0:
+                        if user_select < 5 and user_select > 0:
                             break
 
                     except ValueError:
@@ -161,6 +162,16 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                         print(f"{user_hero} has slain {actual_mon}! Gained {gained_exp}")
                         user_hero.exp_up(gained_exp)
                         break
+
+                elif user_select == 3:
+                    if battle_heal_cooldown == 0:
+                        user_hero.health(user_hero.stats["HP"]*0.25)
+                        print(f"{user_hero} defended himself from attacks and blocked the attack!")
+                        battle_heal_cooldown = 3
+                        continue
+
+                    else:
+                        print(f"Heal is in cooldown: Wait for {battle_heal_cooldown} more turn/s.")
 
                 else:
                     print(f"{user_hero} chickened out! No exp gained.")
@@ -187,13 +198,14 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
 
 1. Attack
 2. Use ability
-3. Run
+3. Defend & Heal
+4. Run
 """)
                 while True:
 
                     try:
                         user_select = int(input("Select from the options above: "))
-                        if user_select < 4 and user_select > 0:
+                        if user_select < 5 and user_select > 0:
                             break
 
                     except ValueError:
@@ -241,6 +253,13 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                         print(f"{user_hero} has slain {actual_mon}! Gained {gained_exp}")
                         user_hero.exp_up(gained_exp)
                         break
+
+                elif user_select == 3:
+                    if battle_heal_cooldown == 0:
+                        user_hero.health(user_hero.stats["HP"]*0.25)
+                        print(f"{user_hero} defended himself from attacks and blocked the attack!")
+                        battle_heal_cooldown = 3
+                        continue
 
                 else:
                     print(f"{user_hero} chickened out! No exp gained.")
@@ -268,13 +287,14 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
 
 1. Attack
 2. Use ability
-3. Run
+3. Defend & Heal
+4. Run
 """)
                 while True:
 
                     try:
                         user_select = int(input("Select from the options above: "))
-                        if user_select < 4 and user_select > 0:
+                        if user_select < 5 and user_select > 0:
                             break
 
                     except ValueError:
@@ -323,6 +343,13 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
                         user_hero.exp_up(gained_exp)
                         break
 
+                elif user_select == 3:
+                    if battle_heal_cooldown == 0:
+                        user_hero.health(user_hero.stats["HP"]*0.25)
+                        print(f"{user_hero} defended himself from attacks and blocked the attack!")
+                        battle_heal_cooldown = 3
+                        continue
+
                 else:
                     print(f"{user_hero} chickened out! No exp gained.")
                     break
@@ -341,7 +368,7 @@ Enemy HP: {actual_mon.current_hp}/{actual_mon.stats["HP"]}
 
     elif user_select == 3:
         if heal_cooldown == 0:
-            user_hero.health(user_hero.stats["HP"])
+            user_hero.health(user_hero.stats["HP"] - user_hero.current_hp)
             heal_cooldown = 3
         else:
             print(f"Heal is in cooldown: {heal_cooldown} more battle/s.")
