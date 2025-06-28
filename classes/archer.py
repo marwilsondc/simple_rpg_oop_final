@@ -1,6 +1,7 @@
 from math import ceil
 import random
 from character import Character
+from abilities import Abilities
 
 class Archer(Character):
     #def __init__()
@@ -12,6 +13,10 @@ class Archer(Character):
         self.base_mana = 65
         self.current_mana = self.base_mana
         self.crit_rate = 20
+        self.abilities = [
+            Abilities("Focus Shot", self.level, 1, power = 30),
+            Abilities("Rapid-Fire", self.level, 3, "Multi-hit Ability", 15, 10, 3),
+        ]
 
     #def __str__()
     def ___str__(self):
@@ -47,5 +52,7 @@ CritDmg: {self.crit_dmg}
             damage = -(self.base_atk - ceil(enemy_armor * 0.25))
             print(f"{self.name} shot their bow and dealt {damage} damage!")
             return damage
+        
+    
 
     

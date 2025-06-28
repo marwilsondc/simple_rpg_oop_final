@@ -10,6 +10,10 @@ class Warrior(Character):
         self.current_hp = self.base_hp
         self.base_mana = 50
         self.current_mana = self.base_mana
+        self.abilities = [
+            Abilities("Dual Strike", self.level, 1, "Multi-hit Ability", 16, num_hits = 2),
+            Abilities("God Slash", self.level, 3, power = 35, mana_req = 10)
+        ]
     
     def __str__(self):
         return f"""

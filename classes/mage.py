@@ -1,6 +1,7 @@
 from math import ceil
 import random 
 from character import Character
+from abilities import Abilities
 
 class Mage(Character):
     def __init__(self, name = "Sucrose"):
@@ -10,6 +11,10 @@ class Mage(Character):
         self.current_hp = self.base_hp
         self.base_mana = 75
         self.current_mana = self.base_mana
+        self.abilities = [
+            Abilities("Arcane Comet", self.level, 1, power = 23, mana_req = 10),
+            Abilities("Rain Meteor", self.level, 3, "Multi-hit Ability", power = 14, mana_req = 15, num_hits = 4)
+        ]
 
     def __str__(self):
         return f"""
